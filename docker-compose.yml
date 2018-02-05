@@ -1,0 +1,9 @@
+version: '3'
+services:
+  activemq:
+    image: vromero/activemq-artemis:2.2.0
+    ports: [ 1883, 5445, 5672, "8080:8161", 61613, 61616 ]
+    depends_on: []
+#     environment:
+#       - ARTEMIS_MIN_MEMORY=256M
+#       - ARTEMIS_MAX_MEMORY=300M
