@@ -5,16 +5,24 @@ services:
     ports: [ 1883, 5445, 5672, 8161, 61613, 61616 ]
     depends_on: []
     environment:
-      - ARTEMIS_USERNAME=username
-      - ARTEMIS_PASSWORD=otherpassword
+      - ARTEMIS_USERNAME=guest
+      - ARTEMIS_PASSWORD=guest
 #       - ARTEMIS_MIN_MEMORY=256M
 #       - ARTEMIS_MAX_MEMORY=300M
 #
+  rabbit:
+    build: rabbit
+    ports: [ 5672, 15672 ]
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
   client:
     build: py-qpid-proton
     depends_on: 
       - activemq
+      - rabbit
     environment:
-      AMQP_HOST: "activemq:5672"
-      AMQP_USER: username
-      AMQP_PASS: otherpassword
+      AMQP_HOST: "rabbit:5672"
+      AMQP_USER: guest
+      AMQP_PASS: guest
