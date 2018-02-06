@@ -1,4 +1,0 @@
-FROM rabbitmq:3.7.3-management
-
-RUN rabbitmq-plugins enable rabbitmq_amqp1_0
-
