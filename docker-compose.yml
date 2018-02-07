@@ -21,6 +21,10 @@ services:
 
   client:
     build: py-qpid-proton
+    entrypoint: ["python", "-u", "helloworld_blocking.py"]
+    working_dir: "/usr/local/src/"
+    volumes:
+      - "./py-qpid-proton/:/usr/local/src/:ro"
     depends_on: 
       - activemq
       - rabbit
