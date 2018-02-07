@@ -1,7 +1,7 @@
 version: '3'
 services:
   activemq:
-    image: vromero/activemq-artemis:2.2.0
+    build: activemq
     ports: [ 1883, 5445, 5672, 8161, 61613, 61616 ]
     depends_on: []
     environment:
@@ -29,6 +29,6 @@ services:
       - activemq
       - rabbit
     environment:
-      AMQP_HOST: "rabbit:5672"
+      AMQP_HOST: "activemq:5672"
       AMQP_USER: guest
       AMQP_PASS: guest
